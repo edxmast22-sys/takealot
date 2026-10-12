@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Takealot.com - Checkout</title>
-  <!-- Tailwind CSS via CDN -->
+  <title>Takealot.com - Berlinger Haus 15-Piece Cookware Set</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons via CDN -->
+  <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body {
@@ -44,7 +44,7 @@
     <div class="flex items-center justify-between text-xs text-gray-500 mb-4 bg-white p-3 rounded-lg border border-gray-200">
       <div class="flex items-center gap-1.5">
         <i data-lucide="truck" class="w-4 h-4 text-[#0b79bf]"></i>
-        <span>In Stock - Ships in 24h</span>
+        <span>Ships in 5 - 7 work days</span>
       </div>
       <div class="flex items-center gap-1.5">
         <i data-lucide="rotate-ccw" class="w-4 h-4 text-[#0b79bf]"></i>
@@ -58,25 +58,32 @@
         <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
           <!-- Main Image -->
           <div class="relative aspect-square bg-gray-50 rounded-lg overflow-hidden mb-3 border border-gray-100 flex items-center justify-center p-4">
-            <img id="main-image" src="/images/LA1.png" alt="Product Image" class="max-h-full max-w-full object-contain" onError="this.src='https://via.placeholder.com/400x400?text=Headphones+Image+1'" />
+            <img id="main-image" src="/images/panela-1.png" alt="Berlinger Haus Cookware Set" class="max-h-full max-w-full object-contain" onError="this.src='https://via.placeholder.com/400x400?text=Berlinger+Haus+Cookware'" />
             <span class="absolute top-3 left-3 bg-[#e01a22] text-white text-xs font-bold px-2 py-1 rounded">
-              SAVE 67%
+              98% OFF
             </span>
           </div>
 
           <!-- Thumbnails -->
-          <div class="flex gap-2 justify-center mb-4">
-            <button onclick="selectImage(0)" id="thumb-0" class="w-16 h-16 rounded-md overflow-hidden border-2 border-[#0b79bf] opacity-100 transition-all p-1 bg-gray-50 flex items-center justify-center">
-              <img src="/images/LA1.png" alt="Thumb 1" class="max-h-full max-w-full object-contain" onError="this.src='https://via.placeholder.com/100?text=1'" />
+          <div class="flex gap-2 justify-center mb-4 overflow-x-auto py-1">
+            <button onclick="selectImage(0)" id="thumb-0" class="w-16 h-16 rounded-md overflow-hidden border-2 border-[#0b79bf] opacity-100 transition-all p-1 bg-gray-50 flex items-center justify-center shrink-0">
+              <img src="/images/panela-1.png" alt="Thumb 1" class="max-h-full max-w-full object-contain" />
             </button>
-            <button onclick="selectImage(1)" id="thumb-1" class="w-16 h-16 rounded-md overflow-hidden border-2 border-gray-200 opacity-70 transition-all p-1 bg-gray-50 flex items-center justify-center">
-              <img src="/images/LA2.png" alt="Thumb 2" class="max-h-full max-w-full object-contain" onError="this.src='https://via.placeholder.com/100?text=2'" />
+            <button onclick="selectImage(1)" id="thumb-1" class="w-16 h-16 rounded-md overflow-hidden border-2 border-gray-200 opacity-70 transition-all p-1 bg-gray-50 flex items-center justify-center shrink-0">
+              <img src="/images/panela-2.png" alt="Thumb 2" class="max-h-full max-w-full object-contain" />
+            </button>
+            <button onclick="selectImage(2)" id="thumb-2" class="w-16 h-16 rounded-md overflow-hidden border-2 border-gray-200 opacity-70 transition-all p-1 bg-gray-50 flex items-center justify-center shrink-0">
+              <img src="/images/panela-3.png" alt="Thumb 3" class="max-h-full max-w-full object-contain" />
+            </button>
+            <button onclick="selectImage(3)" id="thumb-3" class="w-16 h-16 rounded-md overflow-hidden border-2 border-gray-200 opacity-70 transition-all p-1 bg-gray-50 flex items-center justify-center shrink-0">
+              <img src="/images/panela-4.png" alt="Thumb 4" class="max-h-full max-w-full object-contain" />
             </button>
           </div>
 
           <!-- Title & Rating -->
+          <span class="text-xs font-bold text-[#0b79bf]">Berlinger Haus</span>
           <h1 class="text-lg sm:text-xl font-bold text-gray-900 leading-snug mb-2">
-            Premium Wireless Noise-Cancelling Headphones - High Definition Sound
+            Berlinger Haus 15-Piece Titan Pro Non-Stick Cookware Set
           </h1>
 
           <div class="flex items-center gap-2 mb-4">
@@ -89,37 +96,44 @@
             </div>
             <span class="text-xs font-bold text-gray-700">4.8</span>
             <button onclick="openModal('reviews-modal')" class="text-xs text-[#0b79bf] hover:underline font-medium">
-              (1,248 reviews)
+              (212 reviews)
             </button>
+          </div>
+
+          <!-- Color Selection -->
+          <div class="mb-4 pt-2 border-t border-gray-100">
+            <label class="text-xs font-bold text-gray-700 block mb-2">
+              COLOUR: <span id="selected-color-label" class="font-normal text-gray-500">Green</span>
+            </label>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="selectColor('Antracit')" id="color-Antracit" class="px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-gray-200 text-gray-600 hover:border-gray-300">Antracit</button>
+              <button onclick="selectColor('Sahara')" id="color-Sahara" class="px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-gray-200 text-gray-600 hover:border-gray-300">Sahara</button>
+              <button onclick="selectColor('Matt Black')" id="color-Matt Black" class="px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-gray-200 text-gray-600 hover:border-gray-300">Matt Black</button>
+              <button onclick="selectColor('Deep Sea')" id="color-Deep Sea" class="px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-gray-200 text-gray-600 hover:border-gray-300">Deep Sea</button>
+              <button onclick="selectColor('Green')" id="color-Green" class="px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-[#0b79bf] bg-blue-50 text-[#0b79bf] font-bold">Green</button>
+              <button onclick="selectColor('Black Rose')" id="color-Black Rose" class="px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-gray-200 text-gray-600 hover:border-gray-300">Black Rose</button>
+            </div>
           </div>
 
           <!-- Price Display -->
           <div class="bg-gray-50 p-3.5 rounded-lg border border-gray-200 flex items-baseline justify-between mb-4">
             <div>
-              <span class="text-2xl font-black text-[#e01a22]">R 299</span>
-              <span class="text-sm text-gray-400 line-through ml-2">R 899</span>
+              <span class="text-2xl font-black text-gray-900">R 97</span>
+              <span class="text-sm text-gray-400 line-through ml-2">R 5,014</span>
             </div>
             <span class="text-xs font-semibold text-green-700 bg-green-100 px-2 py-1 rounded">
-              You Save R 600
+              98% OFF
             </span>
           </div>
 
-          <!-- Options Selection -->
-          <div class="space-y-4 pt-2 border-t border-gray-100">
-            <div>
-              <label class="text-xs font-bold text-gray-700 block mb-2">
-                COLOUR: <span id="selected-color-label" class="font-normal text-gray-500">Black</span>
-              </label>
-              <div class="flex gap-2">
-                <button onclick="selectColor('Black')" id="color-black" class="px-3 py-1.5 rounded-md text-xs border transition-all border-[#0b79bf] bg-blue-50 text-[#0b79bf] font-bold">
-                  Black
-                </button>
-                <button onclick="selectColor('Silver')" id="color-silver" class="px-3 py-1.5 rounded-md text-xs border transition-all border-gray-200 text-gray-600 hover:border-gray-300 font-medium">
-                  Silver
-                </button>
-              </div>
-            </div>
+          <!-- Delivery Information -->
+          <div class="text-xs space-y-1 mb-4 text-gray-600 bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+            <p class="font-bold text-gray-800">Estimated Delivery: 17 October - 20 October</p>
+            <p class="text-green-700 font-medium">FREE DELIVERY WITH TAKEALOTMORE</p>
+          </div>
 
+          <!-- Options Selection: Quantity -->
+          <div class="space-y-4 pt-2 border-t border-gray-100">
             <div>
               <label class="text-xs font-bold text-gray-700 block mb-2">QUANTITY:</label>
               <div class="flex items-center border border-gray-300 rounded-md w-32 bg-white">
@@ -134,14 +148,35 @@
             </div>
           </div>
 
+          <!-- Description Section -->
+          <div class="mt-6 pt-4 border-t border-gray-100 space-y-3 text-xs text-gray-600 leading-relaxed">
+            <h3 class="font-bold text-gray-800">Description</h3>
+            <p>
+              Elevate your kitchen with the <strong>Berlinger Haus 15-Piece Cookware Set</strong> – a perfect fusion of functionality, design, and modern luxury. Crafted for passionate home chefs and professionals alike, this complete set delivers exceptional performance and timeless elegance.
+            </p>
+            <div id="extra-description" class="hidden space-y-2 pt-2">
+              <p><strong>Exceptional Performance:</strong> Each piece is constructed from forged aluminum, ensuring rapid and even heat distribution.</p>
+              <p><strong>Complete 15-Piece Set Includes:</strong></p>
+              <ul class="list-disc pl-4 space-y-1">
+                <li>Deep frypan Ø24 x 6.5 cm / 2.3 L</li>
+                <li>Frypan Ø28 x 5.2 cm / 2.4 L</li>
+                <li>Casserole with lid Ø20 x 11 cm / 2.6 L</li>
+                <li>Casserole with lid Ø24 x 12.5 cm / 4.3 L</li>
+                <li>Casserole with lid Ø28 x 13 cm / 6.3 L</li>
+                <li>Saucepan with lid Ø16 x 7.5 cm / 1.2 L</li>
+                <li>3 pcs kitchen tools: slotted turner, spaghetti ladle, soup ladle</li>
+                <li>2 pcs black silicone mats</li>
+              </ul>
+            </div>
+            <button onclick="toggleDescription()" id="desc-toggle-btn" class="text-[#0b79bf] font-bold hover:underline block pt-1">
+              Show More
+            </button>
+          </div>
+
           <!-- Accordions / Drawers Trigger -->
           <div class="mt-6 pt-4 border-t border-gray-100 space-y-2">
-            <button onclick="openModal('info-modal')" class="w-full flex items-center justify-between p-3 bg-gray-50 hover:bg-gray-100 rounded-lg text-xs font-bold text-gray-700 transition-colors">
-              <span>PRODUCT INFORMATION & SPECS</span>
-              <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
-            </button>
             <button onclick="openModal('reviews-modal')" class="w-full flex items-center justify-between p-3 bg-gray-50 hover:bg-gray-100 rounded-lg text-xs font-bold text-gray-700 transition-colors">
-              <span>CUSTOMER REVIEWS (1,248)</span>
+              <span>CUSTOMER REVIEWS (212)</span>
               <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
             </button>
           </div>
@@ -158,58 +193,33 @@
           <form class="space-y-3" onsubmit="event.preventDefault(); alert('Order Submitted Successfully!');">
             <div>
               <label class="text-xs font-semibold text-gray-700 block mb-1">Full Name *</label>
-              <input type="text" placeholder="John Doe" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf] focus:border-transparent" required />
+              <input type="text" placeholder="John Doe" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf]" required />
             </div>
 
             <div class="grid grid-cols-2 gap-2">
               <div>
                 <label class="text-xs font-semibold text-gray-700 block mb-1">Phone Number *</label>
-                <input type="tel" placeholder="082 123 4567" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf] focus:border-transparent" required />
+                <input type="tel" placeholder="082 123 4567" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf]" required />
               </div>
               <div>
                 <label class="text-xs font-semibold text-gray-700 block mb-1">Email *</label>
-                <input type="email" placeholder="john@example.com" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf] focus:border-transparent" required />
+                <input type="email" placeholder="john@example.com" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf]" required />
               </div>
             </div>
 
             <div>
               <label class="text-xs font-semibold text-gray-700 block mb-1">Street Address *</label>
-              <input type="text" placeholder="123 Main Street, Suburb" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf] focus:border-transparent" required />
+              <input type="text" placeholder="123 Main Street, Suburb" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf]" required />
             </div>
 
             <div class="grid grid-cols-2 gap-2">
               <div>
                 <label class="text-xs font-semibold text-gray-700 block mb-1">City *</label>
-                <input type="text" placeholder="Cape Town" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf] focus:border-transparent" required />
+                <input type="text" placeholder="Johannesburg" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf]" required />
               </div>
               <div>
                 <label class="text-xs font-semibold text-gray-700 block mb-1">Postal Code *</label>
-                <input type="text" placeholder="8001" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf] focus:border-transparent" required />
-              </div>
-            </div>
-
-            <!-- Payment Options -->
-            <div class="pt-2">
-              <label class="text-xs font-bold text-gray-700 block mb-2">PAYMENT METHOD</label>
-              <div class="space-y-2">
-                <label id="payment-card-label" class="flex items-center justify-between p-2.5 rounded-lg border cursor-pointer transition-all border-[#0b79bf] bg-blue-50/50">
-                  <div class="flex items-center gap-2">
-                    <input type="radio" name="payment" value="card" checked onclick="selectPayment('card')" class="text-[#0b79bf]" />
-                    <i data-lucide="credit-card" class="w-4 h-4 text-gray-600"></i>
-                    <span class="text-xs font-semibold">Credit/Debit Card</span>
-                  </div>
-                  <span class="text-[10px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded font-bold">
-                    Instant
-                  </span>
-                </label>
-
-                <label id="payment-ozow-label" class="flex items-center justify-between p-2.5 rounded-lg border cursor-pointer transition-all border-gray-200 hover:border-gray-300">
-                  <div class="flex items-center gap-2">
-                    <input type="radio" name="payment" value="ozow" onclick="selectPayment('ozow')" class="text-[#0b79bf]" />
-                    <i data-lucide="qr-code" class="w-4 h-4 text-gray-600"></i>
-                    <span class="text-xs font-semibold">Instant EFT / Ozow</span>
-                  </div>
-                </label>
+                <input type="text" placeholder="2001" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf]" required />
               </div>
             </div>
 
@@ -217,7 +227,7 @@
             <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 space-y-1.5 my-3 text-xs">
               <div class="flex justify-between text-gray-600">
                 <span id="subtotal-label">Subtotal (1 item)</span>
-                <span id="subtotal-price">R 299</span>
+                <span id="subtotal-price">R 97</span>
               </div>
               <div class="flex justify-between text-gray-600">
                 <span>Shipping</span>
@@ -225,14 +235,14 @@
               </div>
               <div class="flex justify-between font-bold text-sm text-gray-900 pt-1.5 border-t border-gray-200">
                 <span>Total</span>
-                <span id="total-price" class="text-[#0b79bf]">R 299</span>
+                <span id="total-price" class="text-[#0b79bf]">R 97</span>
               </div>
             </div>
 
             <!-- Submit CTA -->
             <button type="submit" class="w-full bg-[#1c8644] hover:bg-[#156834] text-white font-bold py-3 px-4 rounded-lg text-sm shadow-md transition-colors flex items-center justify-center gap-2">
               <i data-lucide="lock" class="w-4 h-4"></i>
-              <span id="pay-button-text">PAY NOW • R 299</span>
+              <span id="pay-button-text">COMPLETE ORDER • R 97</span>
             </button>
           </form>
 
@@ -246,83 +256,14 @@
     </div>
   </main>
 
-  <!-- Floating Bottom Bar (Mobile Only) -->
-  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 z-20 md:hidden shadow-lg flex items-center justify-between">
-    <div>
-      <span class="text-xs text-gray-500 block">Total Price:</span>
-      <span id="mobile-total-price" class="text-lg font-black text-[#0b79bf]">R 299</span>
-    </div>
-    <button onclick="window.scrollTo({ top: 400, behavior: 'smooth' })" class="bg-[#1c8644] text-white font-bold px-6 py-2.5 rounded-lg text-xs shadow">
-      COMPLETE ORDER
-    </button>
-  </div>
-
-  <!-- Product Info Drawer / Modal -->
-  <div id="info-modal" class="fixed inset-0 z-50 bg-black/50 hidden justify-end transition-opacity">
-    <div class="bg-white w-full max-w-md h-full overflow-y-auto p-6 shadow-xl flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between pb-4 border-b border-gray-100">
-          <h3 class="font-bold text-base text-gray-900">Product Overview & Specs</h3>
-          <button onclick="closeModal('info-modal')" class="p-1 text-gray-400 hover:text-gray-600 rounded-full">
-            <i data-lucide="x" class="w-5 h-5"></i>
-          </button>
-        </div>
-
-        <div class="py-4 space-y-4 text-xs text-gray-600 leading-relaxed">
-          <p>
-            Experience crystal-clear audio with our Flagship Noise-Cancelling Headphones. Built with ultra-lightweight
-            materials and ergonomic memory-foam earcups, designed for all-day comfort and deep immersive sound.
-          </p>
-
-          <div class="space-y-2">
-            <h4 class="font-bold text-gray-800">Key Features:</h4>
-            <ul class="space-y-1.5">
-              <li class="flex items-start gap-2">
-                <i data-lucide="check" class="w-4 h-4 text-green-600 shrink-0 mt-0.5"></i>
-                <span>Active Noise Cancellation (ANC) up to 35dB</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <i data-lucide="check" class="w-4 h-4 text-green-600 shrink-0 mt-0.5"></i>
-                <span>Up to 40 Hours Playtime on a single charge</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <i data-lucide="check" class="w-4 h-4 text-green-600 shrink-0 mt-0.5"></i>
-                <span>Bluetooth 5.3 for ultra-low latency & high stability</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <i data-lucide="check" class="w-4 h-4 text-green-600 shrink-0 mt-0.5"></i>
-                <span>Built-in HD Microphone for clear hands-free calls</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <i data-lucide="check" class="w-4 h-4 text-green-600 shrink-0 mt-0.5"></i>
-                <span>Fast Charging: 10 mins charge = 4 hours playback</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="pt-2">
-            <h4 class="font-bold text-gray-800 mb-2">What's in the Box:</h4>
-            <p class="bg-gray-50 p-2.5 rounded border border-gray-200">
-              1x Headphones, 1x USB-C Charging Cable, 1x 3.5mm Audio Cable, 1x Travel Case, 1x User Manual.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <button onclick="closeModal('info-modal')" class="w-full bg-[#0b79bf] text-white font-bold py-2.5 rounded-lg text-xs mt-4 hover:bg-blue-600 transition-colors">
-        Back to Order
-      </button>
-    </div>
-  </div>
-
-  <!-- Reviews Drawer / Modal -->
+  <!-- Reviews Modal -->
   <div id="reviews-modal" class="fixed inset-0 z-50 bg-black/50 hidden justify-end transition-opacity">
     <div class="bg-white w-full max-w-md h-full overflow-y-auto p-6 shadow-xl flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between pb-4 border-b border-gray-100">
           <div>
             <h3 class="font-bold text-base text-gray-900">Verified Customer Reviews</h3>
-            <p class="text-xs text-gray-500">Showing top ratings from Takealot buyers</p>
+            <p class="text-xs text-gray-500">Berlinger Haus 15-Piece Titan Pro</p>
           </div>
           <button onclick="closeModal('reviews-modal')" class="p-1 text-gray-400 hover:text-gray-600 rounded-full">
             <i data-lucide="x" class="w-5 h-5"></i>
@@ -332,8 +273,8 @@
         <div class="py-4 space-y-4">
           <div class="p-3 bg-gray-50 rounded-lg border border-gray-100 space-y-1.5">
             <div class="flex items-center justify-between">
-              <span class="font-bold text-xs text-gray-800">Sipho M.</span>
-              <span class="text-[10px] text-gray-400">2 days ago</span>
+              <span class="font-bold text-xs text-gray-800">Tamara</span>
+              <span class="text-[10px] text-gray-400">27 May 2024</span>
             </div>
             <div class="flex items-center gap-1 text-amber-400">
               <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
@@ -342,7 +283,7 @@
               <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
               <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
             </div>
-            <p class="text-xs text-gray-600 leading-relaxed">Absolutely amazing sound quality! Delivery to Johannesburg took only 24 hours. Highly recommended.</p>
+            <p class="text-xs text-gray-600 leading-relaxed">So happy with this set. Handles do not get hot, no overflowing while cooking and the lid is on. True to their word on non stick. Super impressed so far...</p>
             <span class="inline-block text-[10px] text-green-700 bg-green-100 px-1.5 py-0.5 rounded font-medium">
               ✓ Verified Purchase
             </span>
@@ -350,8 +291,8 @@
 
           <div class="p-3 bg-gray-50 rounded-lg border border-gray-100 space-y-1.5">
             <div class="flex items-center justify-between">
-              <span class="font-bold text-xs text-gray-800">Kendra B.</span>
-              <span class="text-[10px] text-gray-400">1 week ago</span>
+              <span class="font-bold text-xs text-gray-800">Luxkun</span>
+              <span class="text-[10px] text-gray-400">05 Jan 2025</span>
             </div>
             <div class="flex items-center gap-1 text-amber-400">
               <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
@@ -360,24 +301,7 @@
               <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
               <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
             </div>
-            <p class="text-xs text-gray-600 leading-relaxed">The Noise Cancellation works wonders in my noisy office. Super comfortable for long hours.</p>
-            <span class="inline-block text-[10px] text-green-700 bg-green-100 px-1.5 py-0.5 rounded font-medium">
-              ✓ Verified Purchase
-            </span>
-          </div>
-
-          <div class="p-3 bg-gray-50 rounded-lg border border-gray-100 space-y-1.5">
-            <div class="flex items-center justify-between">
-              <span class="font-bold text-xs text-gray-800">David K.</span>
-              <span class="text-[10px] text-gray-400">2 weeks ago</span>
-            </div>
-            <div class="flex items-center gap-1 text-amber-400">
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-            </div>
-            <p class="text-xs text-gray-600 leading-relaxed">Great value for money. Battery lasts forever. Comes with a nice pouch too.</p>
+            <p class="text-xs text-gray-600 leading-relaxed">HIGHLY RECOMMEND! I had these pots on my wish-list for a while and finally decided to bite the bullet and treat myself for Christmas and I am so glad that I did.</p>
             <span class="inline-block text-[10px] text-green-700 bg-green-100 px-1.5 py-0.5 rounded font-medium">
               ✓ Verified Purchase
             </span>
@@ -391,15 +315,20 @@
     </div>
   </div>
 
-  <!-- JavaScript Logics -->
+  <!-- JavaScript logic -->
   <script>
     lucide.createIcons();
 
     let quantity = 1;
-    const unitPrice = 299;
-    const productImages = ['/images/LA1.png', '/images/LA2.png'];
+    const unitPrice = 97;
+    const productImages = [
+      '/images/panela-1.png',
+      '/images/panela-2.png',
+      '/images/panela-3.png',
+      '/images/panela-4.png'
+    ];
 
-    // Countdown Timer
+    // Timer Logic
     let timeLeft = 899;
     const timerElem = document.getElementById('timer');
     setInterval(() => {
@@ -414,34 +343,31 @@
     // Image Switcher
     function selectImage(index) {
       document.getElementById('main-image').src = productImages[index];
-      const thumb0 = document.getElementById('thumb-0');
-      const thumb1 = document.getElementById('thumb-1');
-
-      if (index === 0) {
-        thumb0.className = "w-16 h-16 rounded-md overflow-hidden border-2 border-[#0b79bf] opacity-100 transition-all p-1 bg-gray-50 flex items-center justify-center";
-        thumb1.className = "w-16 h-16 rounded-md overflow-hidden border-2 border-gray-200 opacity-70 transition-all p-1 bg-gray-50 flex items-center justify-center";
-      } else {
-        thumb0.className = "w-16 h-16 rounded-md overflow-hidden border-2 border-gray-200 opacity-70 transition-all p-1 bg-gray-50 flex items-center justify-center";
-        thumb1.className = "w-16 h-16 rounded-md overflow-hidden border-2 border-[#0b79bf] opacity-100 transition-all p-1 bg-gray-50 flex items-center justify-center";
+      for (let i = 0; i < 4; i++) {
+        const thumb = document.getElementById(`thumb-${i}`);
+        if (i === index) {
+          thumb.className = "w-16 h-16 rounded-md overflow-hidden border-2 border-[#0b79bf] opacity-100 transition-all p-1 bg-gray-50 flex items-center justify-center shrink-0";
+        } else {
+          thumb.className = "w-16 h-16 rounded-md overflow-hidden border-2 border-gray-200 opacity-70 transition-all p-1 bg-gray-50 flex items-center justify-center shrink-0";
+        }
       }
     }
 
     // Color Switcher
-    function selectColor(color) {
-      document.getElementById('selected-color-label').textContent = color;
-      const btnBlack = document.getElementById('color-black');
-      const btnSilver = document.getElementById('color-silver');
-
-      if (color === 'Black') {
-        btnBlack.className = "px-3 py-1.5 rounded-md text-xs border transition-all border-[#0b79bf] bg-blue-50 text-[#0b79bf] font-bold";
-        btnSilver.className = "px-3 py-1.5 rounded-md text-xs border transition-all border-gray-200 text-gray-600 hover:border-gray-300 font-medium";
-      } else {
-        btnSilver.className = "px-3 py-1.5 rounded-md text-xs border transition-all border-[#0b79bf] bg-blue-50 text-[#0b79bf] font-bold";
-        btnBlack.className = "px-3 py-1.5 rounded-md text-xs border transition-all border-gray-200 text-gray-600 hover:border-gray-300 font-medium";
-      }
+    const colorsList = ['Antracit', 'Sahara', 'Matt Black', 'Deep Sea', 'Green', 'Black Rose'];
+    function selectColor(colorName) {
+      document.getElementById('selected-color-label').textContent = colorName;
+      colorsList.forEach(c => {
+        const btn = document.getElementById(`color-${c}`);
+        if (c === colorName) {
+          btn.className = "px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-[#0b79bf] bg-blue-50 text-[#0b79bf] font-bold";
+        } else {
+          btn.className = "px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-gray-200 text-gray-600 hover:border-gray-300";
+        }
+      });
     }
 
-    // Quantity Switcher
+    // Quantity Logic
     function updateQuantity(change) {
       quantity = Math.max(1, quantity + change);
       const total = quantity * unitPrice;
@@ -450,25 +376,23 @@
       document.getElementById('subtotal-label').textContent = `Subtotal (${quantity} item${quantity > 1 ? 's' : ''})`;
       document.getElementById('subtotal-price').textContent = `R ${total}`;
       document.getElementById('total-price').textContent = `R ${total}`;
-      document.getElementById('mobile-total-price').textContent = `R ${total}`;
-      document.getElementById('pay-button-text').textContent = `PAY NOW • R ${total}`;
+      document.getElementById('pay-button-text').textContent = `COMPLETE ORDER • R ${total}`;
     }
 
-    // Payment Selection
-    function selectPayment(type) {
-      const cardLabel = document.getElementById('payment-card-label');
-      const ozowLabel = document.getElementById('payment-ozow-label');
-
-      if (type === 'card') {
-        cardLabel.className = "flex items-center justify-between p-2.5 rounded-lg border cursor-pointer transition-all border-[#0b79bf] bg-blue-50/50";
-        ozowLabel.className = "flex items-center justify-between p-2.5 rounded-lg border cursor-pointer transition-all border-gray-200 hover:border-gray-300";
+    // Toggle Description
+    function toggleDescription() {
+      const extraDesc = document.getElementById('extra-description');
+      const btn = document.getElementById('desc-toggle-btn');
+      if (extraDesc.classList.contains('hidden')) {
+        extraDesc.classList.remove('hidden');
+        btn.textContent = "Show Less";
       } else {
-        ozowLabel.className = "flex items-center justify-between p-2.5 rounded-lg border cursor-pointer transition-all border-[#0b79bf] bg-blue-50/50";
-        cardLabel.className = "flex items-center justify-between p-2.5 rounded-lg border cursor-pointer transition-all border-gray-200 hover:border-gray-300";
+        extraDesc.classList.add('hidden');
+        btn.textContent = "Show More";
       }
     }
 
-    // Modal Handlers
+    // Modal Control
     function openModal(id) {
       const modal = document.getElementById(id);
       modal.classList.remove('hidden');
