@@ -1,409 +1,172 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Takealot.com - Berlinger Haus 15-Piece Cookware Set</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Enter your delivery details to continue to checkout.">
+  <title>Add Address</title>
   <style>
-    body {
-      background-color: #f4f4f4;
-      color: #333333;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
+    :root { --blue:#3d6fa9; --blue-dark:#315d91; --line:#d7d7d7; --muted:#858585; --bg:#f1f1f1; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial,Helvetica,sans-serif; color:#222; background:var(--bg); }
+    .topbar { position:sticky; top:0; z-index:2; background:#fff; border-bottom:1px solid #ddd; min-height:76px; display:flex; align-items:center; justify-content:center; padding:18px 56px; }
+    .topbar h1 { margin:0; font-size:25px; font-weight:700; text-align:center; }
+    .close { position:absolute; right:22px; top:50%; transform:translateY(-50%); font-size:30px; color:#222; text-decoration:none; line-height:1; }
+    main { width:min(100%,780px); margin:0 auto; padding:20px 16px 28px; }
+    .panel { background:#fff; border-radius:22px; padding:28px 26px 32px; }
+    .type-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:28px; }
+    .type-option { border:2px solid transparent; border-radius:12px; background:#f2f2f2; min-height:72px; padding:14px; display:flex; gap:12px; align-items:center; cursor:pointer; font-size:18px; color:#555; }
+    .type-option:has(input:checked) { border-color:var(--blue); }
+    .type-option input { accent-color:var(--blue); width:20px; height:20px; }
+    .field { margin:0 0 24px; }
+    label.field-label { display:block; color:var(--muted); font-size:18px; margin:0 0 7px; }
+    input, select { width:100%; border:0; border-bottom:2px solid var(--line); border-radius:0; padding:12px 0 13px; outline:none; font:inherit; font-size:17px; background:transparent; color:#222; }
+    input:focus, select:focus { border-bottom-color:var(--blue); }
+    input::placeholder { color:#999; opacity:1; }
+    .hint { color:#888; font-size:14px; line-height:1.4; margin-top:7px; }
+    .select-wrap { position:relative; }
+    select { appearance:auto; color:#555; }
+    .consent { display:flex; gap:10px; align-items:flex-start; font-size:13px; line-height:1.45; color:#666; margin:8px 0 24px; }
+    .consent input { width:17px; height:17px; margin-top:1px; flex:0 0 auto; }
+    .submit { width:100%; min-height:66px; border:0; border-radius:40px; background:var(--blue); color:#fff; font-size:21px; font-weight:700; cursor:pointer; }
+    .submit:hover { background:var(--blue-dark); }
+    .submit:disabled { opacity:.65; cursor:wait; }
+    .status { display:none; margin:0 0 16px; padding:12px 14px; border-radius:8px; font-size:14px; line-height:1.45; }
+    .status.error { display:block; color:#8b1e1e; background:#fff0f0; }
+    .status.info { display:block; color:#244c77; background:#edf5ff; }
+    .footnote { margin:16px 4px 0; color:#777; font-size:12px; line-height:1.5; text-align:center; }
+    @media (min-width:600px) { main { padding-top:28px; } .panel { padding:36px 34px 38px; } .field { margin-bottom:30px; } label.field-label { font-size:20px; } input,select { font-size:18px; } }
   </style>
 </head>
-<body class="min-h-screen pb-24">
-
-  <!-- Top Banner -->
-  <div class="bg-[#0b79bf] text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
-    <span>🔥 LIMITED TIME PROMOTION: Free Express Delivery Included!</span>
-    <span id="timer" class="bg-white/20 px-2 py-0.5 rounded font-mono font-bold">14:59</span>
-  </div>
-
-  <!-- Header -->
-  <header class="bg-white border-b border-gray-200 sticky top-0 z-30 shadow-sm">
-    <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <span class="text-2xl font-black tracking-tight text-[#0b79bf]">
-          takealot<span class="text-[#e01a22]">.com</span>
-        </span>
-      </div>
-      <div class="flex items-center gap-1 text-xs text-gray-600 bg-gray-100 px-2.5 py-1.5 rounded-full">
-        <i data-lucide="shield-check" class="w-4 h-4 text-green-600"></i>
-        <span class="font-medium">Secure Checkout</span>
-      </div>
-    </div>
+<body>
+  <header class="topbar">
+    <h1>Add Address</h1>
+    <a class="close" href="#" aria-label="Close" onclick="history.back(); return false;">×</a>
   </header>
 
-  <main class="max-w-4xl mx-auto px-4 pt-4">
-    <!-- Breadcrumb / Trust Bar -->
-    <div class="flex items-center justify-between text-xs text-gray-500 mb-4 bg-white p-3 rounded-lg border border-gray-200">
-      <div class="flex items-center gap-1.5">
-        <i data-lucide="truck" class="w-4 h-4 text-[#0b79bf]"></i>
-        <span>Ships in 5 - 7 work days</span>
-      </div>
-      <div class="flex items-center gap-1.5">
-        <i data-lucide="rotate-ccw" class="w-4 h-4 text-[#0b79bf]"></i>
-        <span>30-Day Easy Returns</span>
-      </div>
-    </div>
+  <main>
+    <section class="panel">
+      <!-- SETUP: replace YOUR_FORMSPREE_ID and YOUR_CHECKOUT_URL below before publishing. -->
+      <form id="addressForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <input type="hidden" name="_subject" value="New customer shipping details">
+        <input type="hidden" name="form_source" value="Shipping address page">
 
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-      <!-- Left Column - Product Showcase -->
-      <div class="md:col-span-7 space-y-4">
-        <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
-          <!-- Main Image -->
-          <div class="relative aspect-square bg-gray-50 rounded-lg overflow-hidden mb-3 border border-gray-100 flex items-center justify-center p-4">
-            <img id="main-image" src="images/panela-1.png" alt="Berlinger Haus Cookware Set" class="max-h-full max-w-full object-contain" onError="this.src='https://via.placeholder.com/400x400?text=Berlinger+Haus+Cookware'" />
-            <span class="absolute top-3 left-3 bg-[#e01a22] text-white text-xs font-bold px-2 py-1 rounded">
-              98% OFF
-            </span>
-          </div>
-
-          <!-- Thumbnails -->
-          <div class="flex gap-2 justify-center mb-4 overflow-x-auto py-1">
-            <button onclick="selectImage(0)" id="thumb-0" class="w-16 h-16 rounded-md overflow-hidden border-2 border-[#0b79bf] opacity-100 transition-all p-1 bg-gray-50 flex items-center justify-center shrink-0">
-              <img src="images/panela-1.png" alt="Thumb 1" class="max-h-full max-w-full object-contain" />
-            </button>
-            <button onclick="selectImage(1)" id="thumb-1" class="w-16 h-16 rounded-md overflow-hidden border-2 border-gray-200 opacity-70 transition-all p-1 bg-gray-50 flex items-center justify-center shrink-0">
-              <img src="images/panela-2.png" alt="Thumb 2" class="max-h-full max-w-full object-contain" />
-            </button>
-            <button onclick="selectImage(2)" id="thumb-2" class="w-16 h-16 rounded-md overflow-hidden border-2 border-gray-200 opacity-70 transition-all p-1 bg-gray-50 flex items-center justify-center shrink-0">
-              <img src="images/panela-3.png" alt="Thumb 3" class="max-h-full max-w-full object-contain" />
-            </button>
-            <button onclick="selectImage(3)" id="thumb-3" class="w-16 h-16 rounded-md overflow-hidden border-2 border-gray-200 opacity-70 transition-all p-1 bg-gray-50 flex items-center justify-center shrink-0">
-              <img src="images/panela-4.png" alt="Thumb 4" class="max-h-full max-w-full object-contain" />
-            </button>
-          </div>
-
-          <!-- Title & Rating -->
-          <span class="text-xs font-bold text-[#0b79bf]">Berlinger Haus</span>
-          <h1 class="text-lg sm:text-xl font-bold text-gray-900 leading-snug mb-2">
-            Berlinger Haus 15-Piece Titan Pro Non-Stick Cookware Set
-          </h1>
-
-          <div class="flex items-center gap-2 mb-4">
-            <div class="flex text-amber-400">
-              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-            </div>
-            <span class="text-xs font-bold text-gray-700">4.8</span>
-            <button onclick="openModal('reviews-modal')" class="text-xs text-[#0b79bf] hover:underline font-medium">
-              (212 reviews)
-            </button>
-          </div>
-
-          <!-- Color Selection (Logo abaixo das avaliações, igual ao vídeo) -->
-          <div class="mb-4 pt-2 border-t border-gray-100">
-            <label class="text-xs font-bold text-gray-700 block mb-2">
-              COLOUR: <span id="selected-color-label" class="font-normal text-gray-500">Green</span>
-            </label>
-            <div class="grid grid-cols-3 gap-2">
-              <button onclick="selectColor('Antracit')" id="color-Antracit" class="px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-gray-200 text-gray-600 hover:border-gray-300">Antracit</button>
-              <button onclick="selectColor('Sahara')" id="color-Sahara" class="px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-gray-200 text-gray-600 hover:border-gray-300">Sahara</button>
-              <button onclick="selectColor('Matt Black')" id="color-Matt Black" class="px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-gray-200 text-gray-600 hover:border-gray-300">Matt Black</button>
-              <button onclick="selectColor('Deep Sea')" id="color-Deep Sea" class="px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-gray-200 text-gray-600 hover:border-gray-300">Deep Sea</button>
-              <button onclick="selectColor('Green')" id="color-Green" class="px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-[#0b79bf] bg-blue-50 text-[#0b79bf] font-bold">Green</button>
-              <button onclick="selectColor('Black Rose')" id="color-Black Rose" class="px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-gray-200 text-gray-600 hover:border-gray-300">Black Rose</button>
-            </div>
-          </div>
-
-          <!-- Price Display -->
-          <div class="bg-gray-50 p-3.5 rounded-lg border border-gray-200 flex items-baseline justify-between mb-4">
-            <div>
-              <span class="text-2xl font-black text-gray-900">R 97</span>
-              <span class="text-sm text-gray-400 line-through ml-2">R 5,014</span>
-            </div>
-            <span class="text-xs font-semibold text-green-700 bg-green-100 px-2 py-1 rounded">
-              98% OFF
-            </span>
-          </div>
-
-          <!-- Delivery Information -->
-          <div class="text-xs space-y-1 mb-4 text-gray-600 bg-blue-50/50 p-3 rounded-lg border border-blue-100">
-            <p class="font-bold text-gray-800">Estimated Delivery: 17 October - 20 October</p>
-            <p class="text-green-700 font-medium">FREE DELIVERY WITH TAKEALOTMORE</p>
-          </div>
-
-          <!-- Quantity Selection -->
-          <div class="space-y-4 pt-2 border-t border-gray-100">
-            <div>
-              <label class="text-xs font-bold text-gray-700 block mb-2">QUANTITY:</label>
-              <div class="flex items-center border border-gray-300 rounded-md w-32 bg-white">
-                <button onclick="updateQuantity(-1)" class="p-2 text-gray-600 hover:bg-gray-100 w-10 flex items-center justify-center border-r">
-                  <i data-lucide="minus" class="w-3.5 h-3.5"></i>
-                </button>
-                <span id="quantity-display" class="flex-1 text-center text-sm font-bold">1</span>
-                <button onclick="updateQuantity(1)" class="p-2 text-gray-600 hover:bg-gray-100 w-10 flex items-center justify-center border-l">
-                  <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Description Section -->
-          <div class="mt-6 pt-4 border-t border-gray-100 space-y-3 text-xs text-gray-600 leading-relaxed">
-            <h3 class="font-bold text-gray-800">Description</h3>
-            <p>
-              Elevate your kitchen with the <strong>Berlinger Haus 15-Piece Cookware Set</strong> – a perfect fusion of functionality, design, and modern luxury. Crafted for passionate home chefs and professionals alike, this complete set delivers exceptional performance and timeless elegance.
-            </p>
-            <div id="extra-description" class="hidden space-y-2 pt-2">
-              <p><strong>Exceptional Performance:</strong> Each piece is constructed from forged aluminum, ensuring rapid and even heat distribution.</p>
-              <p><strong>Complete 15-Piece Set Includes:</strong></p>
-              <ul class="list-disc pl-4 space-y-1">
-                <li>Deep frypan Ø24 x 6.5 cm / 2.3 L</li>
-                <li>Frypan Ø28 x 5.2 cm / 2.4 L</li>
-                <li>Casserole with lid Ø20 x 11 cm / 2.6 L</li>
-                <li>Casserole with lid Ø24 x 12.5 cm / 4.3 L</li>
-                <li>Casserole with lid Ø28 x 13 cm / 6.3 L</li>
-                <li>Saucepan with lid Ø16 x 7.5 cm / 1.2 L</li>
-                <li>3 pcs kitchen tools: slotted turner, spaghetti ladle, soup ladle</li>
-                <li>2 pcs black silicone mats</li>
-              </ul>
-            </div>
-            <button onclick="toggleDescription()" id="desc-toggle-btn" class="text-[#0b79bf] font-bold hover:underline block pt-1">
-              Show More
-            </button>
-          </div>
-
-          <!-- Customer Reviews Trigger -->
-          <div class="mt-6 pt-4 border-t border-gray-100 space-y-2">
-            <button onclick="openModal('reviews-modal')" class="w-full flex items-center justify-between p-3 bg-gray-50 hover:bg-gray-100 rounded-lg text-xs font-bold text-gray-700 transition-colors">
-              <span>CUSTOMER REVIEWS (212)</span>
-              <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
-            </button>
-          </div>
+        <div class="type-row" role="group" aria-label="Address type">
+          <label class="type-option"><input type="radio" name="address_type" value="Residential" checked> Residential</label>
+          <label class="type-option"><input type="radio" name="address_type" value="Business"> Business</label>
         </div>
-      </div>
 
-      <!-- Right Column - Checkout Form -->
-      <div class="md:col-span-5 space-y-4">
-        <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm sticky top-20">
-          <h2 class="text-base font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100 flex items-center gap-2">
-            <i data-lucide="lock" class="w-4 h-4 text-[#0b79bf]"></i> Delivery & Payment Details
-          </h2>
-
-          <form class="space-y-3" onsubmit="event.preventDefault(); alert('Order Submitted Successfully!');">
-            <div>
-              <label class="text-xs font-semibold text-gray-700 block mb-1">Full Name *</label>
-              <input type="text" placeholder="John Doe" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf]" required />
-            </div>
-
-            <div class="grid grid-cols-2 gap-2">
-              <div>
-                <label class="text-xs font-semibold text-gray-700 block mb-1">Phone Number *</label>
-                <input type="tel" placeholder="082 123 4567" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf]" required />
-              </div>
-              <div>
-                <label class="text-xs font-semibold text-gray-700 block mb-1">Email *</label>
-                <input type="email" placeholder="john@example.com" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf]" required />
-              </div>
-            </div>
-
-            <div>
-              <label class="text-xs font-semibold text-gray-700 block mb-1">Street Address *</label>
-              <input type="text" placeholder="123 Main Street, Suburb" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf]" required />
-            </div>
-
-            <div class="grid grid-cols-2 gap-2">
-              <div>
-                <label class="text-xs font-semibold text-gray-700 block mb-1">City *</label>
-                <input type="text" placeholder="Johannesburg" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf]" required />
-              </div>
-              <div>
-                <label class="text-xs font-semibold text-gray-700 block mb-1">Postal Code *</label>
-                <input type="text" placeholder="2001" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0b79bf]" required />
-              </div>
-            </div>
-
-            <!-- Summary Box -->
-            <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 space-y-1.5 my-3 text-xs">
-              <div class="flex justify-between text-gray-600">
-                <span id="subtotal-label">Subtotal (1 item)</span>
-                <span id="subtotal-price">R 97</span>
-              </div>
-              <div class="flex justify-between text-gray-600">
-                <span>Shipping</span>
-                <span class="text-green-600 font-bold">FREE</span>
-              </div>
-              <div class="flex justify-between font-bold text-sm text-gray-900 pt-1.5 border-t border-gray-200">
-                <span>Total</span>
-                <span id="total-price" class="text-[#0b79bf]">R 97</span>
-              </div>
-            </div>
-
-            <!-- Submit CTA -->
-            <button type="submit" class="w-full bg-[#1c8644] hover:bg-[#156834] text-white font-bold py-3 px-4 rounded-lg text-sm shadow-md transition-colors flex items-center justify-center gap-2">
-              <i data-lucide="lock" class="w-4 h-4"></i>
-              <span id="pay-button-text">COMPLETE ORDER • R 97</span>
-            </button>
-          </form>
-
-          <div class="mt-3 text-center">
-            <p class="text-[10px] text-gray-400 flex items-center justify-center gap-1">
-              <i data-lucide="shield-check" class="w-3 h-3"></i> 256-Bit SSL Encrypted Checkout
-            </p>
-          </div>
+        <div class="field">
+          <label class="field-label" for="name">Recipient Name</label>
+          <input id="name" name="recipient_name" autocomplete="name" placeholder="Full name" required>
         </div>
-      </div>
-    </div>
+
+        <div class="field">
+          <label class="field-label" for="phone">Recipient Mobile Number</label>
+          <input id="phone" name="mobile_number" type="tel" autocomplete="tel" placeholder="Include country code" required>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+          <div class="hint">Your order confirmation and delivery updates may be sent here.</div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="street">Street Address</label>
+          <input id="street" name="street_address" autocomplete="street-address" placeholder="Street name and house number" required>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="building">Complex / Building <span style="font-size:.85em">(Optional)</span></label>
+          <input id="building" name="building" placeholder="Building, unit number or floor" autocomplete="address-line2">
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="suburb">Suburb / Neighbourhood</label>
+          <input id="suburb" name="suburb" autocomplete="address-level3" placeholder="Suburb or neighbourhood" required>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="city">City / Town</label>
+          <input id="city" name="city" autocomplete="address-level2" placeholder="City or town" required>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="province">Province / State</label>
+          <input id="province" name="province_state" autocomplete="address-level1" placeholder="Province or state" required>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="postal">Postal Code</label>
+          <input id="postal" name="postal_code" autocomplete="postal-code" placeholder="Postal code (if applicable)">
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="country">Country</label>
+          <input id="country" name="country" autocomplete="country-name" placeholder="Country" required>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" name="privacy_consent" value="yes" required>
+          <span>I agree that the seller may use these details to process my order and arrange delivery. I understand that my information will be handled according to the seller's privacy notice.</span>
+        </label>
+
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+        <button id="submitButton" class="submit" type="submit">Continue</button>
+      </form>
+    </section>
+    <p class="footnote">Your details are used to process your order and arrange delivery. Do not enter payment card details or passwords on this page.</p>
   </main>
 
-  <!-- Reviews Modal -->
-  <div id="reviews-modal" class="fixed inset-0 z-50 bg-black/50 hidden justify-end transition-opacity">
-    <div class="bg-white w-full max-w-md h-full overflow-y-auto p-6 shadow-xl flex flex-col justify-between">
-      <div>
-        <div class="flex items-center justify-between pb-4 border-b border-gray-100">
-          <div>
-            <h3 class="font-bold text-base text-gray-900">Verified Customer Reviews</h3>
-            <p class="text-xs text-gray-500">Berlinger Haus 15-Piece Titan Pro</p>
-          </div>
-          <button onclick="closeModal('reviews-modal')" class="p-1 text-gray-400 hover:text-gray-600 rounded-full">
-            <i data-lucide="x" class="w-5 h-5"></i>
-          </button>
-        </div>
-
-        <div class="py-4 space-y-4">
-          <div class="p-3 bg-gray-50 rounded-lg border border-gray-100 space-y-1.5">
-            <div class="flex items-center justify-between">
-              <span class="font-bold text-xs text-gray-800">Tamara</span>
-              <span class="text-[10px] text-gray-400">27 May 2024</span>
-            </div>
-            <div class="flex items-center gap-1 text-amber-400">
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-            </div>
-            <p class="text-xs text-gray-600 leading-relaxed">So happy with this set. Handles do not get hot, no overflowing while cooking and the lid is on. True to their word on non stick. Super impressed so far...</p>
-            <span class="inline-block text-[10px] text-green-700 bg-green-100 px-1.5 py-0.5 rounded font-medium">
-              ✓ Verified Purchase
-            </span>
-          </div>
-
-          <div class="p-3 bg-gray-50 rounded-lg border border-gray-100 space-y-1.5">
-            <div class="flex items-center justify-between">
-              <span class="font-bold text-xs text-gray-800">Luxkun</span>
-              <span class="text-[10px] text-gray-400">05 Jan 2025</span>
-            </div>
-            <div class="flex items-center gap-1 text-amber-400">
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-            </div>
-            <p class="text-xs text-gray-600 leading-relaxed">HIGHLY RECOMMEND! I had these pots on my wish-list for a while and finally decided to bite the bullet and treat myself for Christmas and I am so glad that I did.</p>
-            <span class="inline-block text-[10px] text-green-700 bg-green-100 px-1.5 py-0.5 rounded font-medium">
-              ✓ Verified Purchase
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <button onclick="closeModal('reviews-modal')" class="w-full bg-[#0b79bf] text-white font-bold py-2.5 rounded-lg text-xs mt-4 hover:bg-blue-600 transition-colors">
-        Close Reviews
-      </button>
-    </div>
-  </div>
-
-  <!-- JavaScript logic -->
   <script>
-    lucide.createIcons();
+    const form = document.getElementById('addressForm');
+    const button = document.getElementById('submitButton');
+    const statusBox = document.getElementById('status');
 
-    let quantity = 1;
-    const unitPrice = 97;
-    const productImages = [
-      'images/panela-1.png',
-      'images/panela-2.png',
-      'images/panela-3.png',
-      'images/panela-4.png'
-    ];
+    // Replace this with the real checkout URL before publishing.
+    const CHECKOUT_URL = 'https://YOUR-CHECKOUT-URL-HERE';
 
-    // Timer Logic
-    let timeLeft = 899;
-    const timerElem = document.getElementById('timer');
-    setInterval(() => {
-      if (timeLeft > 0) {
-        timeLeft--;
-        const mins = Math.floor(timeLeft / 60).toString().padStart(2, '0');
-        const secs = (timeLeft % 60).toString().padStart(2, '0');
-        timerElem.textContent = `${mins}:${secs}`;
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      statusBox.className = 'status';
+      statusBox.textContent = '';
+
+      if (form.action.includes('YOUR_FORMSPREE_ID')) {
+        statusBox.className = 'status error';
+        statusBox.textContent = 'Setup required: add your Formspree form ID before using this form.';
+        return;
       }
-    }, 1000);
+      if (CHECKOUT_URL.includes('YOUR-CHECKOUT-URL-HERE')) {
+        statusBox.className = 'status error';
+        statusBox.textContent = 'Setup required: add your real checkout URL in the code before using this form.';
+        return;
+      }
 
-    // Image Switcher
-    function selectImage(index) {
-      document.getElementById('main-image').src = productImages[index];
-      for (let i = 0; i < 4; i++) {
-        const thumb = document.getElementById(`thumb-${i}`);
-        if (i === index) {
-          thumb.className = "w-16 h-16 rounded-md overflow-hidden border-2 border-[#0b79bf] opacity-100 transition-all p-1 bg-gray-50 flex items-center justify-center shrink-0";
+      button.disabled = true;
+      button.textContent = 'Submitting…';
+      statusBox.className = 'status info';
+      statusBox.textContent = 'Submitting your details securely…';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          window.location.assign(CHECKOUT_URL);
         } else {
-          thumb.className = "w-16 h-16 rounded-md overflow-hidden border-2 border-gray-200 opacity-70 transition-all p-1 bg-gray-50 flex items-center justify-center shrink-0";
+          throw new Error('Submission was not accepted.');
         }
+      } catch (error) {
+        statusBox.className = 'status error';
+        statusBox.textContent = 'We could not submit your details. Please check your connection and try again.';
+        button.disabled = false;
+        button.textContent = 'Continue';
       }
-    }
-
-    // Color Switcher
-    const colorsList = ['Antracit', 'Sahara', 'Matt Black', 'Deep Sea', 'Green', 'Black Rose'];
-    function selectColor(colorName) {
-      document.getElementById('selected-color-label').textContent = colorName;
-      colorsList.forEach(c => {
-        const btn = document.getElementById(`color-${c}`);
-        if (c === colorName) {
-          btn.className = "px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-[#0b79bf] bg-blue-50 text-[#0b79bf] font-bold";
-        } else {
-          btn.className = "px-3 py-2 rounded-md text-xs font-medium border text-center transition-all border-gray-200 text-gray-600 hover:border-gray-300";
-        }
-      });
-    }
-
-    // Quantity Logic
-    function updateQuantity(change) {
-      quantity = Math.max(1, quantity + change);
-      const total = quantity * unitPrice;
-
-      document.getElementById('quantity-display').textContent = quantity;
-      document.getElementById('subtotal-label').textContent = `Subtotal (${quantity} item${quantity > 1 ? 's' : ''})`;
-      document.getElementById('subtotal-price').textContent = `R ${total}`;
-      document.getElementById('total-price').textContent = `R ${total}`;
-      document.getElementById('pay-button-text').textContent = `COMPLETE ORDER • R ${total}`;
-    }
-
-    // Toggle Description
-    function toggleDescription() {
-      const extraDesc = document.getElementById('extra-description');
-      const btn = document.getElementById('desc-toggle-btn');
-      if (extraDesc.classList.contains('hidden')) {
-        extraDesc.classList.remove('hidden');
-        btn.textContent = "Show Less";
-      } else {
-        extraDesc.classList.add('hidden');
-        btn.textContent = "Show More";
-      }
-    }
-
-    // Modal Control
-    function openModal(id) {
-      const modal = document.getElementById(id);
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeModal(id) {
-      const modal = document.getElementById(id);
-      modal.classList.remove('flex');
-      modal.classList.add('hidden');
-    }
+    });
   </script>
 </body>
 </html>
