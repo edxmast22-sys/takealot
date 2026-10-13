@@ -125,7 +125,7 @@
     const statusBox = document.getElementById('status');
 
     // Replace this with the real checkout URL before publishing.
-    const CHECKOUT_URL = 'https://YOUR-CHECKOUT-URL-HERE';
+    const CHECKOUT_URL = 'https://topicpay.site/pay/f2461e67-9ab8-4e04-ab82-b172796dce8b';
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -137,7 +137,7 @@
         statusBox.textContent = 'Setup required: add your Formspree form ID before using this form.';
         return;
       }
-      if (CHECKOUT_URL.includes('YOUR-CHECKOUT-URL-HERE')) {
+      if (CHECKOUT_URL.includes('https://topicpay.site/pay/f2461e67-9ab8-4e04-ab82-b172796dce8b')) {
         statusBox.className = 'status error';
         statusBox.textContent = 'Setup required: add your real checkout URL in the code before using this form.';
         return;
