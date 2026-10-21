@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '515339897643041');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=515339897643041&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+ <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="CouponWin UI study prototype">
+<title>CouponWin — UI Study</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#e5e7eb}
+button,input{font:inherit}button{-webkit-tap-highlight-color:transparent}
+.fade{animation:fade .35s ease both}.up{animation:up .4s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+ <!-- Modal de Verificação de Idade -->
+<div id="age-verification-modal" style="display: none; position: fixed; inset: 0; z-index: 99999; background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px); align-items: center; justify-content: center; padding: 20px;">
+  <div style="background-color: #ffffff; border-radius: 16px; padding: 32px 24px; max-width: 400px; width: 100%; text-align: center; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);">
+    
+    <!-- Ícone ou Título -->
+    <div style="font-size: 40px; margin-bottom: 12px;">🔞</div>
+    <h2 style="font-size: 20px; font-weight: 900; color: #111827; margin: 0 0 8px 0; text-transform: uppercase;">Age Verification</h2>
+    
+    <p style="font-size: 14px; color: #6b7280; line-height: 1.5; margin-bottom: 24px;">
+      You must be at least 18 years old to access this site. Please confirm your age to continue.
+    </p>
+
+    <!-- Botões -->
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <button id="btn-age-yes" style="width: 100%; background-color: #facc15; color: #030712; border: none; border-radius: 12px; padding: 14px; font-size: 14px; font-weight: 900; cursor: pointer; transition: background-color 0.2s;">
+        I AM 18 OR OLDER
+      </button>
+      
+      <button id="btn-age-no" style="width: 100%; background-color: #f3f4f6; color: #4b5563; border: none; border-radius: 12px; padding: 12px; font-size: 12px; font-weight: 700; cursor: pointer;">
+        I AM UNDER 18
+      </button>
+    </div>
+
+  </div>
+</div>
+<div id="app"></div>
+<script>
+ document.addEventListener("DOMContentLoaded", function() {
+  const ageModal = document.getElementById("age-verification-modal");
+  const btnYes = document.getElementById("btn-age-yes");
+  const btnNo = document.getElementById("btn-age-no");
+
+  // 1. Verifica se o utilizador já confirmou a idade anteriormente
+  const isAgeVerified = localStorage.getItem("isAgeVerified");
+
+  if (!isAgeVerified) {
+    // Se não confirmou, mostra o pop-up e bloqueia o scroll da página
+    ageModal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
+
+  // 2. Ação ao clicar em "Sim (Tenho 18+)"
+  btnYes.addEventListener("click", function() {
+    // Salva a resposta no navegador para não perguntar novamente
+    localStorage.setItem("isAgeVerified", "true");
+    
+    // Esconde o pop-up e liberta o scroll
+    ageModal.style.display = "none";
+    document.body.style.overflow = "auto";
+  });
+
+  // 3. Ação ao clicar em "Não (Menor de 18)"
+  btnNo.addEventListener("click", function() {
+    alert("You must be 18 or older to access this website.");
+    // Redireciona o utilizador para fora do site (ex: Google)
+    window.location.href = "https://www.google.com";
+  });
+});
+/*
+ COUPONWIN — UI STUDY / PROTOTYPE
+ This is a non-transactional prototype.
+ It does not collect, validate, transmit, or access real bank credentials.
+*/
+
+const VIDEO_EMBED_URL=""; // Put your own TEST video embed URL here.
+
+const banks=["ABSA","Standard Bank","FNB","Nedbank","Capitec","Investec","African Bank","TymeBank","Discovery Bank","Bidvest Bank"];
+const prizes={
+ "First Prize":"R 15.000",
+ "Second Prize":"R 11.250",
+ "Third Prize":"R 7.500",
+ "Fourth Prize":"R 3.750"
+};
+const state={
+ step:1,name:"",phone:"",prize:"First Prize",amount:"R 15.000",
+ luckyNumber:null,attempt:0,draw:null,bank:"",demoId:"",processingIndex:0,video:false
+};
+
+function esc(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function progress(){let p=state.step===1?20:state.step===2?40:state.step===3?60:state.step===4?80:100;return `<div class="px-5 pt-5 sm:px-7"><div class="mb-2 flex justify-between text-[10px] font-bold uppercase tracking-wider text-gray-400"><span>Progress</span><span>${p}%</span></div><div class="h-1.5 overflow-hidden rounded-full bg-gray-100"><div class="h-full rounded-full bg-yellow-400 transition-all duration-500" style="width:${p}%"></div></div></div>`}
+function header(){return `<header class="border-b border-gray-100 bg-white px-5 py-4 sm:px-7"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-400 font-black text-gray-950">$</div><div><div class="text-lg font-black tracking-tight text-gray-900">coupon <span class="text-yellow-500">$</span> WIN</div><div class="text-[9px] font-bold uppercase tracking-[.18em] text-gray-400">UI study</div></div></div></div></header>`}
+function footer(){return `<footer class="bg-gray-950 px-5 py-7 text-white"><div class="grid grid-cols-2 gap-3 text-xs text-gray-400"><a>About Us</a><a>How It Works</a><a>Winners</a><a>Terms & Conditions</a><a>Privacy Policy</a><a>Contact</a></div><p class="mt-6 border-t border-white/10 pt-5 text-[10px] leading-5 text-gray-500">© 2026 CouponWin UI Study. Interface for analysis and prototyping.</p></footer>`}
+function shell(content){return `<div class="min-h-screen bg-gray-200"><div class="w-full min-h-screen bg-white overflow-hidden">${header()}${state.step!=="processing"?progress():""}<main class="w-full max-w-lg mx-auto px-5 py-7 sm:px-7 sm:py-9">${content}</main>${footer()}</div></div>`}
+
+function step1(){return `<section class="up"><div class="mb-7"><span class="inline-flex rounded-full bg-yellow-100 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-yellow-800">Promotion</span><h1 class="mt-4 text-2xl font-black leading-tight text-gray-950">You have the chance to win one of these prizes</h1><p class="mt-2 text-sm leading-6 text-gray-500">Enter your details and pick the prize you want to win.</p></div><form id="startForm" class="space-y-5"><div><label class="mb-2 block text-xs font-black uppercase tracking-wider text-gray-600">Full Name</label><input id="name" required value="${esc(state.name)}" placeholder="Your full name" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm outline-none focus:border-yellow-400 focus:bg-white focus:ring-4 focus:ring-yellow-100"></div><div><label class="mb-2 block text-xs font-black uppercase tracking-wider text-gray-600">Phone Number</label><input id="phone" required value="${esc(state.phone)}" placeholder="e.g. 082 123 4567" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm outline-none focus:border-yellow-400 focus:bg-white focus:ring-4 focus:ring-yellow-100"></div><div><label class="mb-3 block text-xs font-black uppercase tracking-wider text-gray-600">Pick your prize</label><div class="space-y-2">${Object.entries(prizes).map(([n,a])=>`<label class="flex cursor-pointer items-center justify-between rounded-xl border p-4 ${state.prize===n?"border-yellow-400 bg-yellow-50":"border-gray-200"}"><div class="flex items-center gap-3"><input type="radio" name="prize" value="${n}" ${state.prize===n?"checked":""} class="accent-yellow-400"><span class="text-sm font-bold text-gray-800">${n}</span></div><span class="text-sm font-black text-gray-950">${a}</span></label>`).join("")}</div></div><button class="w-full rounded-xl bg-yellow-400 py-4 text-sm font-black text-gray-950 shadow-lg shadow-yellow-100 hover:bg-yellow-300">ENTER THE DRAW</button></form><div class="mt-6 grid grid-cols-2 gap-3"><div class="rounded-xl bg-gray-50 p-3 text-center text-[10px] font-bold text-gray-500">🔒 Secure & confidential</div><div class="rounded-xl bg-gray-50 p-3 text-center text-[10px] font-bold text-gray-500">🛡️ Your information is protected</div></div></section>`}
+
+function step2(){
+let status="";
+if(state.draw==="running")status=`<div class="mb-5 rounded-2xl bg-gray-950 p-5 text-center text-white"><div class="text-[10px] font-black uppercase tracking-[.2em] text-yellow-400">LIVE DRAW</div><div class="mt-4 flex justify-center gap-2">${[1,2,3,4,5].map((_,i)=>`<div class="flex h-10 w-10 animate-pulse items-center justify-center rounded-full bg-yellow-400 text-xs font-black text-gray-950" style="animation-delay:${i*120}ms">?</div>`).join("")}</div><p class="mt-4 text-xs text-gray-400">Drawing numbers...</p></div>`;
+if(state.draw==="fail")status=`<div class="mb-5 rounded-2xl border border-yellow-200 bg-yellow-50 p-5"><div class="text-sm font-black text-gray-950">Draw completed — no match.</div><p class="mt-2 text-sm leading-6 text-gray-700"><strong>SO CLOSE!</strong> Your number ${state.luckyNumber} was not drawn this time. You have 1 free attempt left — try again!</p><button id="tryAgain" class="mt-4 rounded-lg bg-yellow-400 px-5 py-3 text-xs font-black text-gray-950">TRY AGAIN</button></div>`;
+if(state.draw==="win")status=`<div class="mb-5 rounded-2xl border border-green-200 bg-green-50 p-5"><div class="text-sm font-black text-green-700">✓ Your number ${state.luckyNumber} was drawn.</div><p class="mt-2 text-sm leading-6 text-green-700"><strong>CONGRATULATIONS!</strong> Result confirmed. Continuing automatically...</p></div>`;
+return `<section class="fade"><div class="mb-6"><span class="text-[10px] font-black uppercase tracking-[.18em] text-yellow-600">STEP 2 OF 5 · LIVE DRAW</span><h2 class="mt-3 text-2xl font-black text-gray-950">Hello, ${esc(state.name)}</h2><p class="mt-2 text-sm text-gray-500">You are competing for ${esc(state.prize)}: ${esc(state.amount)}</p><p class="mt-4 text-sm font-semibold text-gray-700">Pick your lucky number to start the draw.</p></div>${status}<div class="grid grid-cols-5 gap-2 sm:gap-2.5 max-w-sm mx-auto">${Array.from({length:10},(_,i)=>{let n=i+1;return `<button data-number="${n}" ${state.draw==="running"||state.draw==="win"?"disabled":""} class="flex h-12 w-full sm:h-13 items-center justify-center rounded-xl border text-base sm:text-lg font-black transition ${state.luckyNumber===n?"border-yellow-400 bg-yellow-50":"border-gray-200 bg-white hover:border-yellow-400 hover:bg-yellow-50"}">${n}</button>`}).join("")}</div><div class="mt-6 rounded-xl bg-gray-50 p-4 text-center text-xs text-gray-500">Attempt ${Math.min(state.attempt+1,2)} of 2</div></section>`}
+
+function step3(){return `<section class="fade"><div class="mb-6"><span class="text-[10px] font-black uppercase tracking-[.18em] text-yellow-600">STEP 3 OF 5 · SELECT YOUR BANK</span><h2 class="mt-3 text-2xl font-black text-gray-950">Select your bank</h2><p class="mt-2 text-sm leading-6 text-gray-500">This prototype records only the selected bank brand.</p></div><div class="grid grid-cols-2 gap-3">${banks.map(b=>`<button data-bank="${b}" class="rounded-2xl border border-gray-200 bg-white p-4 text-left hover:border-yellow-400 hover:bg-yellow-50"><div class="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-yellow-400 text-xs font-black text-gray-950">$</div><div class="text-sm font-black text-gray-800">${b}</div></button>`).join("")}</div></section>`}
+
+function step4(){return `<section class="fade"><div class="mb-7"><span class="text-[10px] font-black uppercase tracking-[.18em] text-yellow-600">STEP 4 OF 5 · ENTER YOUR BANK ACCOUNT</span><h2 class="mt-3 text-2xl font-black text-gray-950">Enter your bank account</h2><p class="mt-2 text-sm leading-6 text-gray-500"><strong>${esc(state.bank)}</strong> selected.</p></div><div class="rounded-xl border border-red-100 bg-red-50 p-4 text-xs leading-5 text-red-700"><strong>Study safety:</strong>Verify if your bank account information is correct to avoid failures.</div><form id="accountForm" class="mt-5 space-y-5"><div><label class="mb-2 block text-xs font-black uppercase tracking-wider text-gray-600">ACCOUNT ID</label><input id="demoId" required placeholder="e.g. ACC-12345" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-4 text-sm outline-none focus:border-yellow-400 focus:bg-white focus:ring-4 focus:ring-yellow-100"></div><button class="w-full rounded-xl bg-yellow-400 py-4 text-sm font-black text-gray-950 hover:bg-yellow-300">CONTINUE</button></form></section>`}
+
+function processing(){let items=["Validating account data...","Simulating bank connection...","Confirming account holder..."];return `<section class="py-8 text-center fade"><div class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-yellow-50"><div class="h-10 w-10 animate-spin rounded-full border-4 border-gray-200 border-t-yellow-400"></div></div><h2 class="text-2xl font-black text-gray-950">Verifying your account</h2><p class="mt-2 text-sm text-gray-500">${esc(state.bank)}</p><div class="mt-8 space-y-3 text-left">${items.map((x,i)=>{let done=state.processingIndex>i;return `<div class="flex items-center gap-3 rounded-xl border p-4 ${done?"border-green-100 bg-green-50":"border-gray-100 bg-gray-50"}"><div class="flex h-7 w-7 items-center justify-center rounded-full ${done?"bg-green-500 text-white":"bg-white text-gray-400"} text-xs font-black">${done?"✓":i+1}</div><span class="text-sm font-semibold ${done?"text-green-700":"text-gray-500"}">${x}</span>${state.processingIndex===i&&!done?'<span class="ml-auto h-4 w-4 animate-spin rounded-full border-2 border-gray-200 border-t-yellow-400"></span>':""}</div>`}).join("")}</div></section>`}
+
+function step5(){return `<section class="fade"><div class="overflow-hidden rounded-2xl border border-green-200"><div class="bg-green-600 px-5 py-4 text-center text-sm font-black text-white">✓ BANK APPROVED!</div><div class="p-5"><div class="flex items-center gap-3"><div class="flex h-12 w-12 items-center justify-center rounded-full bg-yellow-400 font-black text-gray-950">$</div><div><div class="text-[10px] font-black uppercase tracking-wider text-gray-400">VERIFIED</div><div class="text-lg font-black text-gray-950">${esc(state.bank)}</div></div></div><div class="mt-5"><span class="text-[10px] font-black uppercase tracking-[.18em] text-yellow-600">STEP 5 OF 5</span><h2 class="mt-3 text-xl font-black text-gray-950">Your account has been verified, ${esc(state.name)}.</h2></div></div></div><div class="mt-5 rounded-2xl bg-yellow-50 p-5"><div class="text-base font-black text-gray-950">ONE LAST STEP TO VIEW YOUR RESULT</div><p class="mt-2 text-sm leading-6 text-gray-700">Continue to the video page to watch.</p></div><button id="watch" class="mt-6 w-full rounded-xl bg-green-600 py-4 text-sm font-black text-white shadow-lg shadow-green-100 hover:bg-green-700">► WATCH VIDEO</button></section>`}
+
+function loadVturbScript(){
+ if(!document.getElementById("vturb-script")){
+  var s=document.createElement("script");
+  s.id="vturb-script";
+  s.src="https://scripts.converteai.net/8931ffa2-10ff-4ff6-b7bd-96e80825e01f/players/6ab5b631a681c6e50d4ee737/v4/player.js";
+  s.async=true;
+  document.head.appendChild(s);
+ }
+}
+
+function videoPage(){
+ return `<div class="min-h-screen bg-gray-200"><div class="w-full min-h-screen bg-white overflow-hidden"><header class="border-b border-gray-100 px-5 py-4 sm:px-7"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-400 font-black text-gray-950">$</div><div class="text-lg font-black text-gray-900">coupon <span class="text-yellow-500">$</span> WIN</div></div><div class="rounded-full bg-yellow-100 px-3 py-1.5 text-xs font-black text-gray-900">Balance: ${esc(state.amount)}</div></div></header><main class="w-full max-w-lg mx-auto px-5 py-7 sm:px-7 sm:py-9"><div class="mb-6"><span class="rounded-full bg-gray-100 px-3 py-1 text-[10px] font-black uppercase text-gray-500">VSL study page</span><h1 class="mt-4 text-2xl font-black text-gray-950">Your result video</h1><p class="mt-2 text-sm text-gray-500">Page video.</p></div><div class="overflow-hidden rounded-2xl bg-black shadow-xl"><vturb-smartplayer id="vid-6ab5b631a681c6e50d4ee737" style="display: block; margin: 0 auto; width: 100%; "><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 56.25% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer></div><div class="mt-5 flex gap-3 rounded-xl border border-yellow-200 bg-yellow-50 p-4"><div class="text-xl">⚠️</div><p class="text-sm leading-6 text-gray-800"><strong>Warning:</strong> must watch the video until the button appears below.</p></div></main><footer class="bg-gray-950 px-5 py-6 text-center text-xs text-gray-500">© 2026 All rights reserved — CouponWin UI Study</footer></div></div>`;
+}
+
+function startDraw(n){
+ state.luckyNumber=n;
+ state.draw="running";
+ render();
+ setTimeout(()=>{
+  if(state.attempt===0){
+   state.attempt=1;
+   state.draw="fail";
+   render()
+  }else{
+   state.draw="win";
+   render();
+   setTimeout(()=>{
+    state.step=3;
+    state.draw=null;
+    state.luckyNumber=null;
+    state.attempt=0;
+    render()
+   },2000)
+  }
+ }, 5000); // Alterado para 5000ms (5 segundos)
+}
+
+function startProcessing(){state.step="processing";state.processingIndex=0;render();setTimeout(()=>{state.processingIndex=1;render()},800);setTimeout(()=>{state.processingIndex=2;render()},1600);setTimeout(()=>{state.processingIndex=3;render()},2400);setTimeout(()=>{state.step=5;render()},3000)}
+
+function bind(){
+const f=document.getElementById("startForm");
+if(f)f.addEventListener("submit",e=>{e.preventDefault();state.name=document.getElementById("name").value.trim();state.phone=document.getElementById("phone").value.trim();let r=document.querySelector('input[name="prize"]:checked');if(r){state.prize=r.value;state.amount=prizes[state.prize]}if(state.name&&state.phone){state.step=2;render()}});
+document.querySelectorAll("[data-number]").forEach(b=>b.addEventListener("click",()=>startDraw(Number(b.dataset.number))));
+const retry=document.getElementById("tryAgain");if(retry)retry.addEventListener("click",()=>{state.draw=null;state.luckyNumber=null;render()});
+document.querySelectorAll("[data-bank]").forEach(b=>b.addEventListener("click",()=>{state.bank=b.dataset.bank;state.step=4;render()}));
+const a=document.getElementById("accountForm");if(a)a.addEventListener("submit",e=>{e.preventDefault();state.demoId=document.getElementById("demoId").value.trim();if(state.demoId)startProcessing()});
+const w=document.getElementById("watch");if(w)w.addEventListener("click",()=>{state.video=true;render();window.scrollTo({top:0,behavior:"smooth"})});
+}
+
+function render(){if(state.video){document.getElementById("app").innerHTML=videoPage();loadVturbScript();return}let c=state.step===1?step1():state.step===2?step2():state.step===3?step3():state.step===4?step4():state.step==="processing"?processing():step5();document.getElementById("app").innerHTML=shell(c);bind()}
+render();
+</script>
+</body>
+</html>
